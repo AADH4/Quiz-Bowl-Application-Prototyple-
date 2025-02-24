@@ -15,7 +15,6 @@ def extract_questions_from_pdf(url):
             text = page.extract_text()
             if text:
                 # Process each page's text to extract questions and answers
-                # Assuming the questions are clearly formatted, we split the text into questions
                 sections = text.split("\n")
                 for section in sections:
                     if section.strip().startswith("Q"):
@@ -50,8 +49,8 @@ if pdf_url:
                 st.subheader(f"Question {question_idx + 1}:")
                 slow_typing(questions[question_idx])  # Slowly type out the question
                 
-                # Allow the user to input their answer
-                user_answer = st.text_input("Your Answer:")
+                # Allow the user to input their answer with a unique key
+                user_answer = st.text_input("Your Answer:", key=f"answer_{question_idx}")
                 
                 if user_answer:  # When the user provides an answer
                     # Check answer (for simplicity, this is just a placeholder check)
